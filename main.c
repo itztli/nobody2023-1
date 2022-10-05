@@ -4,6 +4,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include "numeric.h"
+#include "model.h"
+#include "particle.h"
 
 //MKS system
 
@@ -70,19 +74,22 @@ int main(int argn, char **args){
   particle2 = new_Particle(mass2, x2, y2, z2, vx2, vy2, vz2);
   particle3 = new_Particle(mass3, x3, y3, z3, vx3, vy3, vz3);
 
-  model3body = new_Model(name, N);
-  
-  add_Particle_to_Model(&model3body,particle1);
-  add_Particle_to_Model(&model3body,particle2);
-  add_Particle_to_Model(&model3body,particle3);
+  new_Model(&model3body, name, N);
 
-  trapezio = Integrator(integrator,dt);
+  printf("Welcome to n-body!\n");
+  add_Particle_to_Model(&model3body,particle1);
+  //printf("model.i=%i\n",model3body.i);
+  add_Particle_to_Model(&model3body,particle2);
+  //printf("model.i=%i\n",model3body.i);
+  add_Particle_to_Model(&model3body,particle3);
+  //printf("model.i=%i\n",model3body.i);
+  
+  trapezio = new_integrator(integrator,dt);
 
   for(int i=0; i<100;i++){
-    model3body = Integrator_solve(&trapecio, model3body);
-    print_Model(model3body);
+    integrator_solve(&trapezio, &model3body);
+    print_Model(&model3body);
   }
-  
 
   return 0;
 }
