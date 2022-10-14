@@ -13,12 +13,12 @@ extern "C" {
 
   typedef struct{
     int numeric_method; //0: trapezium
-    float dt;
+    double dt;
   }Integrator;
 
-  Integrator new_integrator(int numeric_method, float dt);
+  Integrator new_integrator(int numeric_method, double dt);
   
-  void integrator_solve(Integrator *integrator, Model *model);
+  Model integrator_solve(Integrator integrator, Model model);
 
 #ifdef __cplusplus
 }

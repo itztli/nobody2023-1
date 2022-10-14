@@ -10,13 +10,13 @@ extern "C" {
 #endif
 
   typedef struct{
-    float mass;
-    float p[3];
-    float v[3];
-    float a[3];
+    double mass;
+    double p[3];
+    double v[3];
+    double F[3];
   }Particle;
 
-  Particle new_Particle(int mass, float x, float y, float z, float vx, float vy, float vz);
+  Particle new_Particle(int mass, double x, double y, double z, double vx, double vy, double vz);
 
   void print_Particle(Particle particle);
   

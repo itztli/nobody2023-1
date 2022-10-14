@@ -16,13 +16,14 @@ extern "C" {
     int N; //number of particles
     int i; //index of the last n-particle.
     Particle *particles; //set of particles
+    Particle *backup_particles; //copy of set of particles
   }Model;
 
-  void new_Model(Model *model, char name[], int N);
+  Model new_Model(char *name, int N);
   
   void add_Particle_to_Model(Model *model, Particle particle);
 
-  void print_Model(Model *model);
+  void print_Model(Model model);
   
 #ifdef __cplusplus
 }
